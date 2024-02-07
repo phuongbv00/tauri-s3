@@ -44,7 +44,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col pt-5 px-10 gap-1">
+    <main className="flex flex-col py-5 px-10 gap-1">
       <label htmlFor="" className="font-semibold">AWS Client Configuration</label>
       <div className="flex gap-1 flex-wrap">
         <input type="text" className="rounded border-2 py-1 px-3 flex-grow" placeholder="Bucket Name" value={bucketName} onChange={e => handleTextChange(e, setBucketName)} />

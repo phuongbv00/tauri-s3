@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "S3 Demo",
+    "productName": "Tauri AWS S3 Upload",
     "version": "0.1.0"
   },
   "tauri": {
@@ -59,9 +59,9 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 340,
         "resizable": true,
-        "title": "S3 Demo",
+        "title": "Tauri AWS S3 Upload",
         "width": 800
       }
     ]
