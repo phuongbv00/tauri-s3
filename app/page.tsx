@@ -1,5 +1,8 @@
 'use client'
 
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 import { upload } from "@/services/s3";
 import { message } from '@tauri-apps/api/dialog';
 import { useState } from "react";
@@ -21,7 +24,7 @@ export default function Home() {
   };
 
   const handleCheckboxChange = (event: any, setState: (value: any) => any) => {
-    setState(event.target.checked as boolean);
+    setState(event as boolean);
   };
 
   const submit = async () => {
@@ -44,24 +47,22 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col py-5 px-10 gap-1">
+    <main className="flex flex-col py-5 px-10 gap-2">
       <label htmlFor="" className="font-semibold">AWS Client Configuration</label>
       <div className="flex gap-1 flex-wrap">
-        <input type="text" className="rounded border-2 py-1 px-3 flex-grow" placeholder="Bucket Name" value={bucketName} onChange={e => handleTextChange(e, setBucketName)} />
-        <input type="text" className="rounded border-2 py-1 px-3 flex-grow" placeholder="Region" value={region} onChange={e => handleTextChange(e, setRegion)} />
+        <Input placeholder="Bucket Name" value={bucketName} onChange={e => handleTextChange(e, setBucketName)} />
+        <Input placeholder="Region" value={region} onChange={e => handleTextChange(e, setRegion)} />
+        <Input placeholder="Access Key ID" value={accessKeyId} onChange={e => handleTextChange(e, setAccessKeyId)} />
+        <Input placeholder="Secret Access Key" value={secretAccessKey} onChange={e => handleTextChange(e, setSecretAccessKey)} />
       </div>
-      <div className="flex gap-1 flex-wrap">
-        <input type="text" className="rounded border-2 py-1 px-3 flex-grow" placeholder="Access Key ID" value={accessKeyId} onChange={e => handleTextChange(e, setAccessKeyId)} />
-        <input type="text" className="rounded border-2 py-1 px-3 flex-grow" placeholder="Secret Access Key" value={secretAccessKey} onChange={e => handleTextChange(e, setSecretAccessKey)} />
-      </div>
-      <div className="flex gap-1 flex-wrap">
-        <input type="checkbox" className="rounded border-2 py-1 px-3" placeholder="Secret Access Key" checked={useLocalStack} onChange={e => handleCheckboxChange(e, setUseLocalStack)} />
-        <label htmlFor="">Use LocalStack</label>
+      <div className="flex gap-1 flex-wrap items-center">
+        <Checkbox id="chkBoxUseLocalStack" checked={useLocalStack} onCheckedChange={e => handleCheckboxChange(e, setUseLocalStack)} />
+        <label htmlFor="chkBoxUseLocalStack" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Use LocalStack</label>
       </div>
       <hr className="my-3" />
       <label htmlFor="" className="font-semibold">AWS S3 Upload</label>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={submit} className="bg-emerald-300 text-emerald-900 px-3 py-1 rounded">Upload</button>
+      <Input type="file" onChange={handleFileChange} />
+      <Button onClick={submit}>Upload</Button>
     </main>
   );
 }

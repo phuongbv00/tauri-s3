@@ -59,7 +59,7 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 340,
+        "height": 450,
         "resizable": true,
         "title": "Tauri AWS S3 Upload",
         "width": 800
